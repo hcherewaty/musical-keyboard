@@ -5,9 +5,18 @@
     <head>
         <title>Musical Keyboard</title>
         <script type="text/javascript" src="paper-full.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.1.1/howler.js"></script>
         <link rel="stylesheet" type="text/css" href="circles.css" />
 
         <script type="text/paperscript" canvas="myCanvas">
+
+            var sound1 = new Howl({
+                src: ['sounds/bubbles.mp3']
+            });
+
+            var sound2 = new Howl({
+                src: ['sounds/clay.mp3']
+            });
 
             var circles = [];
 
@@ -16,7 +25,16 @@
                 var randomPoint = Point.random();
                 var point = maxPoint * randomPoint;
                 var newCircle = new Path.Circle(point, 500);
-                newCircle.fillColor = 'blue';
+                if(event.key === 'a'){
+                    sound1.play();
+                    newCircle.fillColor = '#2c3e50';
+                } else if(event.key === 's'){
+                    sound2.play();
+                    newCircle.fillColor = '#16a085';
+                } else {
+                    newCircle.fillColor = 'blue';
+                }
+                
 
                 circles.push(newCircle);
             }
