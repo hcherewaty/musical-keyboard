@@ -8,12 +8,26 @@
         <link rel="stylesheet" type="text/css" href="circles.css" />
 
         <script type="text/paperscript" canvas="myCanvas">
+
+            var circles = [];
+
             function onKeyDown(event){
                 var maxPoint = new Point(view.size.width, view.size.height);
                 var randomPoint = Point.random();
                 var point = maxPoint * randomPoint;
+                var newCircle = new Path.Circle(point, 500);
+                newCircle.fillColor = 'blue';
 
-                new Path.Circle(point, 10).fillColor = 'pink';
+                circles.push(newCircle);
+            }
+
+            function onFrame(event){
+                for(var i = 0; i < circles.length; i++){
+                    //change color each animation frame
+                    circles[i].fillColor.hue +=1;
+                    //shrink circle each animation frame
+                    circles[i].scale(.95);
+                }
             }
         </script>
     </head>
