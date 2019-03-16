@@ -1,0 +1,20 @@
+<script type="text/paperscript" canvas="myCanvas">
+    //(first loop)for x coordinates while x is less than 1000, every 100 pixels (x += 100)
+    for(var x = 0; x < 1000; x+= 100){
+        //(second loop) for y coordinates
+        for(var y = 0; y < 1000; y += 100){
+            //create circles on x-axis with a fixed y coordinate; radius of 10
+            new Path.Circle(new Point(x, y), 10).fillColor = 'pink';
+        }    
+    }
+</script>
+<!-- X  |  Y
+    0     0
+    0     100
+    0     200
+    0     300
+    ...
+    0     900
+    100   0
+    
+    so, for every x we're generating 10 y's -->
